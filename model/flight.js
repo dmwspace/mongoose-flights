@@ -33,7 +33,7 @@ const flightSchema = new Schema({
         type: Date,
         default: function() {
             const today = new Date()
-            const oneYearFromNow = today.getFullYear +1
+            const oneYearFromNow = today.getFullYear() + 1
             today.setFullYear(oneYearFromNow)
             return today
         }

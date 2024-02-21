@@ -8,8 +8,10 @@ module.exports = {
 }
 
 function newFlight(req, res) {
-    const newFlight = newFlightModel()
+    const newFlight = new FlightModel()
+    console.log(`newFlight: ${newFlight}`)
     const defaultDate = newFlight.departs.toISOString().slice(0, 16)
+    
     res.render('flights/new', {defaultDate})
 }
 

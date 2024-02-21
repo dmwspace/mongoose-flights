@@ -3,11 +3,14 @@ const FlightModel = require('../model/flight')
 module.exports = {
     create,
     new: newFlight,
-    index
+    index,
+    show
 }
 
 function newFlight(req, res) {
-    res.render('flights/new')
+    const newFlight = newFlightModel()
+    const defaultDate = newFlight.departs.toISOString().slice(0, 16)
+    res.render('flights/new', {defaultDate})
 }
 
 async function create(req, res) {
@@ -30,5 +33,16 @@ async function index(req, res) {
     } catch(err) {
         console.group(err)
         res.render('flights')
+    }
+}
+async function show(req, res) {
+    try {
+        const flightFromDatabase = await FlightModel.findById(req.params.id)
+        console.log(flightFromDatabase);
+        res.render("flights/show", {
+            flight: flightFromDatabase
+        })
+    } catch(err) {
+        res.send(err)
     }
 }

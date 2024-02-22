@@ -1,4 +1,4 @@
-const FlightModel = require('../model/flight');
+const FlightModel = require('../models/flight');
 
 module.exports = {
     create
